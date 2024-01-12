@@ -7,7 +7,7 @@ const comments = [...commentsFromFile];
 
 const assignmentRouter = Router();
 
-assignmentRouter.get("/assignments", (req, res) => {
+assignmentRouter.get("/", (req, res) => {
   try {
     console.log(assignments);
     return res.json({
@@ -19,7 +19,7 @@ assignmentRouter.get("/assignments", (req, res) => {
   }
 });
 
-assignmentRouter.get("/assignments/:id", (req, res) => {
+assignmentRouter.get("/:id", (req, res) => {
   const assignmentId = +req.params.id;
   const hasFound = assignments.find((assign) => assign.id === assignmentId);
 
@@ -36,7 +36,7 @@ assignmentRouter.get("/assignments/:id", (req, res) => {
   });
 });
 
-assignmentRouter.post("/assignments", (req, res) => {
+assignmentRouter.post("/", (req, res) => {
   const newAssignment = req.body;
   const newAssignmentId = assignments[assignments.length - 1].id + 1;
 
@@ -50,7 +50,7 @@ assignmentRouter.post("/assignments", (req, res) => {
   });
 });
 
-assignmentRouter.put("/assignments/:id", (req, res) => {
+assignmentRouter.put("/:id", (req, res) => {
   const updateAssignment = req.body;
   const assignmentId = +req.params.id;
 
@@ -76,7 +76,7 @@ assignmentRouter.put("/assignments/:id", (req, res) => {
   });
 });
 
-assignmentRouter.delete("/assignments/:id", (req, res) => {
+assignmentRouter.delete("/:id", (req, res) => {
   const assignmentId = +req.params.id;
 
   const hasFound = assignments.find((assign) => assign.id === assignmentId);
@@ -96,7 +96,7 @@ assignmentRouter.delete("/assignments/:id", (req, res) => {
   });
 });
 
-assignmentRouter.get("/assignments/:id/comments", (req, res) => {
+assignmentRouter.get("/:id/comments", (req, res) => {
   const assignmentId = +req.params.id;
 
   const assignmentComments = comments.filter((comment) => {
@@ -108,7 +108,7 @@ assignmentRouter.get("/assignments/:id/comments", (req, res) => {
   });
 });
 
-assignmentRouter.post("/assignments/:id/comments", (req, res) => {
+assignmentRouter.post("/:id/comments", (req, res) => {
   const assignmentId = +req.params.id;
   const newComment = req.body;
   const commentId = comments[comments.length - 1].id + 1;
@@ -124,7 +124,7 @@ assignmentRouter.post("/assignments/:id/comments", (req, res) => {
   });
 });
 
-assignmentRouter.delete("/assignments/:id/comments", (req, res) => {
+assignmentRouter.delete("/:id/comments", (req, res) => {
   const assignmentId = +req.params.id;
 
   const hasFound = comments.find(
